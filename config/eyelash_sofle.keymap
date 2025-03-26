@@ -57,9 +57,11 @@
             tapping-term-ms = <280>;
             quick-tap-ms = <175>;
             bindings = <&kp>, <&kp>;
-            hold-trigger-key-positions = < ... >; // List of keys on the right side of the keyboard
+
+            hold-trigger-key-positions = <7 8 9 10 11 12 20 21 22 23 24 25 33 34 35 36 37 38 46 47 48 49 50 51 59 60 61 62 63>; // List of keys on the right side of the keyboard
             hold-trigger-on-release;
         };
+
         hmr: home_row_mod_right {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -68,7 +70,8 @@
             tapping-term-ms = <280>;
             quick-tap-ms = <175>;
             bindings = <&kp>, <&kp>;
-            hold-trigger-key-positions = < ... >; // List of keys on the left side of the keyboard
+
+            hold-trigger-key-positions = <0 1 2 3 4 5 13 14 15 16 17 18 26 27 28 29 30 31 39 40 41 42 43 44 53 54 55 56 57>; // List of keys on the left side of the keyboard
             hold-trigger-on-release;
         };
     };
@@ -78,11 +81,11 @@
 
         layer0 {
             bindings = <
-&kp ESC     &kp N1        &kp N2        &kp N3          &kp N4          &kp N5       &kp UP_ARROW     &kp N6     &kp N7           &kp N8           &kp N9           &kp N0                     &kp MINUS
-&kp TAB     &kp Q         &kp W         &kp E           &kp R           &kp T        &kp DOWN_ARROW   &kp Y      &kp U            &kp I            &kp O            &kp P                      &kp BSLH
-&kp CAPS    &hml LSHIFT A  &hml LCTRL S   &hml LEFT_GUI D  &hml LEFT_ALT F  &kp G        &kp LEFT_ARROW   &kp H      &hmr RIGHT_ALT J  &hmr RIGHT_GUI K  &hmr RCTRL L      &hmr RIGHT_SHIFT SEMICOLON  &kp APOS
-&kp LSHFT   &kp Z         &kp X         &kp C           &kp V           &kp B        &kp RIGHT_ARROW  &kp N      &kp M            &kp COMMA        &kp DOT          &kp FSLH                   &kp ENTER
-&kp C_MUTE  &kp LCTRL     &kp LEFT_GUI  &kp LEFT_ALT    &lt 1 TAB       &kp SPACE    &kp ENTER        &kp ENTER  &kp BACKSPACE    &mo 2            &kp RIGHT_SHIFT  &kp DELETE
+&kp ESC     &kp N1         &kp N2        &kp N3           &kp N4           &kp N5       &kp UP_ARROW     &kp N6     &kp N7            &kp N8            &kp N9           &kp N0                      &kp MINUS
+&kp TAB     &kp Q          &kp W         &kp E            &kp R            &kp T        &kp DOWN_ARROW   &kp Y      &kp U             &kp I             &kp O            &kp P                       &kp BSLH
+&kp CAPS    &hml LSHIFT A  &hml LCTRL S  &hml LEFT_GUI D  &hml LEFT_ALT F  &kp G        &kp LEFT_ARROW   &kp H      &hmr RIGHT_ALT J  &hmr RIGHT_GUI K  &hmr RCTRL L     &hmr RIGHT_SHIFT SEMICOLON  &kp APOS
+&kp LSHFT   &kp Z          &kp X         &kp C            &kp V            &kp B        &kp RIGHT_ARROW  &kp N      &kp M             &kp COMMA         &kp DOT          &kp FSLH                    &kp ENTER
+&kp C_MUTE  &kp LCTRL      &kp LEFT_GUI  &kp LEFT_ALT     &lt 1 TAB        &kp SPACE    &kp ENTER        &kp ENTER  &kp BACKSPACE     &mo 2             &kp RIGHT_SHIFT  &kp DELETE
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;
