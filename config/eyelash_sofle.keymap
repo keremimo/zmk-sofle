@@ -30,6 +30,8 @@
     quick-tap-ms = <125>;
 };
 
+&lt { quick-tap-ms = <125>; };
+
 / {
     // Add JK to ESC combo (right half positions: J=38, K=39)
 
