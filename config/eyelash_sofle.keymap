@@ -25,6 +25,11 @@
     trigger-period-ms = <16>;
 };
 
+&mt {
+    flavor = "tap-preferred";
+    quick-tap-ms = <125>;
+};
+
 / {
     // Add JK to ESC combo (right half positions: J=38, K=39)
 
