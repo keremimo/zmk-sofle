@@ -31,11 +31,8 @@
 };
 
 &lt {
-    quick-tap-ms = <150>;
-    flavor = "balanced";
-    tapping-term-ms = <1000>;
-    hold-trigger-key-positions = <20 21 23 24 25 33 34 35 36 37 38 46 47 48 49 50 51 59 60 61 62 63 22 12 13 14 15 16 17 18 26 27 28 29 30 31 39 40 41 42 43 44 53 54 55 56 57 52>;
-    hold-trigger-on-release;
+    quick-tap-ms = <175>;
+    flavor = "hold-preferred";
     require-prior-idle-ms = <0>;
 };
 
@@ -46,7 +43,7 @@
         compatible = "zmk,combos";
 
         combo_jk_esc {
-            timeout-ms = <70>;
+            timeout-ms = <100>;
             key-positions = <34 35>; // Right half J (38) + K (39)
             bindings = <&kp ESC>;
             layers = <0>; // Only works on base layer
@@ -117,7 +114,7 @@
             label = "game";
         };
 
-        nav {
+        navi {
             bindings = <
 &kp F1      &kp F2     &kp F3                &kp F4            &kp F5          &kp F6    &mmv MOVE_UP     &kp F7     &kp F8           &kp F9             &kp F10                &kp F11          &kp F12
 &trans      &kp GRAVE  &kp LEFT_PARENTHESIS  &kp LEFT_BRACKET  &kp LEFT_BRACE  &trans    &mmv MOVE_DOWN   &kp PG_UP  &kp RIGHT_BRACE  &kp RIGHT_BRACKET  &kp RIGHT_PARENTHESIS  &kp MINUS        &kp EQUAL
@@ -126,9 +123,9 @@
 &kp C_MUTE  &trans     &trans                &trans            &trans          &trans    &mkp LCLK        &trans     &trans           &trans             &trans                 &trans
             >;
 
-            display-name = "layer1";
+            display-name = "navi";
             sensor-bindings = <&scroll_encoder>;
-            label = "nav";
+            label = "navi";
         };
 
         symb {
