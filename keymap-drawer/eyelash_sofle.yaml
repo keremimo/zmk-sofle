@@ -236,11 +236,11 @@ layers:
   - '{'
   - '}'
   - {t: '$$mdi:transfer$$', type: trans}
-  - '&bl BL_TOG'
-  - '&bl BL_ON'
-  - '&bl BL_OFF'
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - RGB TOG
+  - RGB EFR
+  - RGB EFR
+  - RGB HUI
+  - RGB HUD
   - {t: '$$mdi:menu-right$$', s: '$$mdi:mouse$$'}
   - {t: '`', s: '~'}
   - '~'
