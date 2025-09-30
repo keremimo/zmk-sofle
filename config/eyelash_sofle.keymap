@@ -166,7 +166,7 @@
 &kp TILDE  &trans  &trans  &trans  &trans   &trans       &mmv MOVE_UP     &kp F6     &kp F7          &kp F8                &kp F9                 &kp F10    &bt BT_CLR_ALL
 &trans     &trans  &trans  &trans  &trans   &erbif       &mmv MOVE_DOWN   &kp MINUS  &kp UNDERSCORE  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp UNDER  &kp PLUS
 &trans     &trans  &trans  &trans  &trans   &erbecho     &mmv MOVE_LEFT   &kp EQUAL  &kp PLUS        &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp LBRC   &kp RBRC
-&trans     &trans  &trans  &trans  &erbend  &erbblock    &mmv MOVE_RIGHT  &kp GRAVE  &kp TILDE       &kp LEFT_BRACE        &kp RIGHT_BRACE        &trans     &bt BT_CLR
+&trans     &trans  &trans  &trans  &erbend  &erbblock    &mmv MOVE_RIGHT  &kp GRAVE  &kp TILDE       &kp LEFT_BRACE        &kp RIGHT_BRACE        &trans     &trans
 &trans     &trans  &trans  &trans  &mo 4    &trans       &mkp LCLK        &trans     &trans          &trans                &trans                 &trans
             >;
 
