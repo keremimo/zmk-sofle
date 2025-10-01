@@ -1,23 +1,23 @@
 manifest:
   remotes:
-    - name: keremimo
-      url-base: https://github.com/keremimo
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
       # Additional modules containing boards/shields/custom code can be listed here as well.
       # See:
       # - https://zmk.dev/docs/features/modules
       # - https://docs.zephyrproject.org/3.5.0/develop/west/manifest.html#projects
-    - name: gpeye
-      url-base: https://github.com/GPeye
+  #  - name: gpeye
+  #    url-base: https://github.com/GPeye
   projects:
+   # - name: mario-peripheral-animation
+   #   remote: gpeye
+   #    revision: main 
     - name: eyelash_sofle
       url: https://github.com/keremimo/zmk-sofle
       revision: main
-    - name: mario-peripheral-animation
-      remote: gpeye
-      revision: main 
     - name: zmk
-      remote: keremimo
+      remote: zmkfirmware
       revision: main
       import: app/west.yml
   self:
-    path: config
+    path: boards

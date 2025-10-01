@@ -26,6 +26,8 @@
     trigger-period-ms = <16>;
 };
 
+&soft_off { hold-time-ms = <2000>; };
+
 &mt {
     flavor = "balanced";
     quick-tap-ms = <150>;
@@ -48,6 +50,11 @@
             key-positions = <34 35>; // Right half J (38) + K (39)
             bindings = <&kp ESC>;
             layers = <0>; // Only works on base layer
+        };
+        
+        softoff {
+            bindings = <&soft_off>;
+            key-positions = <14 28 40>;
         };
     };
 
@@ -170,6 +177,7 @@
 &trans     &trans  &trans  &trans  &mo 4    &trans       &mkp LCLK        &trans     &trans          &trans                &trans                 &trans
             >;
 
+            display-name = "layer2";
             sensor-bindings = <&scroll_encoder>;
             label = "symb";
         };
@@ -182,6 +190,21 @@
 &trans  &trans        &trans        &trans        &trans        &trans          &trans  &trans           &trans           &trans           &trans           &trans           &trans
 &trans  &trans        &trans        &trans        &trans        &trans          &trans  &trans           &trans           &trans           &trans           &trans
             >;
+
+            display-name = "layer3";
+            sensor-bindings = <&scroll_encoder>;
+        };
+
+        layer_4 {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+            >;
+         display-name = "layer4";
+            sensor-bindings = <&scroll_encoder>;
         };
     };
 };
