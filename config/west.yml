@@ -1,7 +1,7 @@
 manifest:
   remotes:
-    - name: keremimo
-      url-base: https://github.com/keremimo
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
       # Additional modules containing boards/shields/custom code can be listed here as well.
       # See:
       # - https://zmk.dev/docs/features/modules
@@ -16,7 +16,7 @@ manifest:
       url: https://github.com/keremimo/zmk-sofle
       revision: main
     - name: zmk
-      remote: keremimo
+      remote: zmkfirmware
       revision: main
       import: app/west.yml
   self:
