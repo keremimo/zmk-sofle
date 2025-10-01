@@ -1,7 +1,7 @@
 manifest:
   remotes:
-    - name: zmkfirmware
-      url-base: https://github.com/zmkfirmware
+    - name: keremimo
+      url-base: https://github.com/keremimo
       # Additional modules containing boards/shields/custom code can be listed here as well.
       # See:
       # - https://zmk.dev/docs/features/modules
@@ -16,7 +16,7 @@ manifest:
       remote: gpeye
       revision: main 
     - name: zmk
-      remote: zmkfirmware
+      remote: keremimo
       revision: main
       import: app/west.yml
   self:
