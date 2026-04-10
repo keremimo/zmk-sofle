@@ -19,9 +19,6 @@ if BOARD_EYELASH_SOFLE_LEFT || BOARD_EYELASH_SOFLE_RIGHT
 config ZMK_SPLIT
     default y
 
-config BT_CTLR
-    default BT
-
 if USB
 
 config USB_NRFX

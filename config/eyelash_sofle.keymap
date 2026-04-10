@@ -101,28 +101,24 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&none &kp LT &kp PRCNT &kp EQUAL &kp SPACE &kp PRCNT &kp GT>;
-            label = "ERBECHO";
         };
 
         erbblock: erbblock {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&none &kp LT &kp PRCNT &kp SPACE &kp PRCNT &kp GT>;
-            label = "ERBBLOCK";
         };
 
         erbif: erbif {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&none &kp LT &kp PRCNT &kp SPACE &kp I &kp F &kp SPACE &kp T &kp R &kp U &kp E &kp SPACE &kp PRCNT &kp GT &kp RET &kp RET &kp LT &kp PRCNT &kp SPACE &kp E &kp N &kp D &kp SPACE &kp PRCNT &kp GT>;
-            label = "ERBIF";
         };
 
         erbend: erbend {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&none &kp LT &kp PRCNT &kp SPACE &kp E &kp N &kp D &kp SPACE &kp PRCNT &kp GT>;
-            label = "ERBEND";
         };
     };
 
@@ -150,8 +146,6 @@
 &kp LCTRL  &kp Z   &kp X   &kp C   &kp V   &kp B        &kp RIGHT  &kp N      &kp M   &kp COMMA  &kp DOT  &kp FSLH  &kp ENTER
 &trans     &trans  &trans  &trans  &trans  &kp SPACE    &trans     &kp ENTER  &trans  &trans     &trans   &trans
             >;
-
-            label = "game";
         };
 
         navi {
@@ -165,7 +159,6 @@
 
             display-name = "navi";
             sensor-bindings = <&inc_dec_kp C_BRIGHTNESS_INC C_BRIGHTNESS_DEC>;
-            label = "navi";
         };
 
         symb {
@@ -179,7 +172,6 @@
 
             display-name = "layer2";
             sensor-bindings = <&scroll_encoder>;
-            label = "symb";
         };
 
         sys {
