@@ -1,0 +1,2 @@
+#include "eyelash_sofle_left.dts"
+#include <common/nordic/nrf52840_uf2_boot_mode.dtsi>

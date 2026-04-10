@@ -1,6 +1,6 @@
 ---
 include:
-  - board: eyelash_sofle_left
+  - board: eyelash_sofle_left/nrf52840/zmk
     shield: nice_view
-  - board: eyelash_sofle_right
+  - board: eyelash_sofle_right/nrf52840/zmk
     shield: nice_view

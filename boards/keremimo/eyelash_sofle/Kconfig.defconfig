@@ -16,21 +16,6 @@ endif # BOARD_EYELASH_SOFLE_LEFT
 
 if BOARD_EYELASH_SOFLE_LEFT || BOARD_EYELASH_SOFLE_RIGHT
 
-config BOARD
-    default "eyelash_sofle"
-
-config BOARD_ENABLE_DCDC
-    bool "Enable DCDC mode"
-    select SOC_DCDC_NRF52X
-    default y
-    depends on (BOARD_EYELASH_SOFLE_LEFT || BOARD_EYELASH_SOFLE_RIGHT)
-
-config BOARD_ENABLE_DCDC_HV
-    bool "Enable High Voltage DCDC converter"
-    default y
-    select SOC_DCDC_NRF52X_HV
-    depends on (BOARD_EYELASH_SOFLE_LEFT || BOARD_EYELASH_SOFLE_RIGHT)
-
 config ZMK_SPLIT
     default y
 
@@ -77,6 +62,10 @@ choice LV_COLOR_DEPTH
 endchoice
 
 endif
+
+choice ZMK_BOOTMODE_MAGIC_VALUE_BOOTLOADER_TYPE
+    default ZMK_BOOTMODE_MAGIC_VALUE_BOOTLOADER_TYPE_ADAFRUIT_NRF52
+endchoice
 
 if ZMK_BACKLIGHT
 

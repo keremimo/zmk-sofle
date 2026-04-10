@@ -8,7 +8,7 @@ PYTHON_VENV_DIR="${ZMK_PYTHON_VENV_DIR:-$ROOT_DIR/tools/python-venv}"
 CONFIG_DIR="$ROOT_DIR/config"
 MODULE_DIR="$ROOT_DIR"
 BUILD_DIR="$ROOT_DIR/build"
-ZMK_REVISION="${ZMK_REVISION:-v0.3}"
+ZMK_REVISION="${ZMK_REVISION:-main}"
 ZMK_MANIFEST_FILE="${ZMK_MANIFEST_FILE:-app/west.yml}"
 ZMK_APP_DIR="${ZMK_APP_DIR:-}"
 SHIELD="${ZMK_SHIELD:-nice_view}"
@@ -82,6 +82,55 @@ ensure_zephyr_python_requirements() {
   "$PYTHON_VENV_DIR/bin/python" -m pip install -r "$requirements_file"
 }
 
+current_zmk_ref() {
+  local zmk_repo="$WORKSPACE_DIR/zmk.git"
+
+  if [ ! -d "$zmk_repo/.git" ]; then
+    return
+  fi
+
+  git -C "$zmk_repo" symbolic-ref --quiet --short HEAD 2>/dev/null ||
+    git -C "$zmk_repo" describe --tags --exact-match 2>/dev/null ||
+    git -C "$zmk_repo" rev-parse --short HEAD
+}
+
+workspace_zmk_revision() {
+  local revision_file="$WORKSPACE_DIR/.zmk-revision"
+
+  if [ -f "$revision_file" ]; then
+    cat "$revision_file"
+    return
+  fi
+
+  current_zmk_ref
+}
+
+sync_zmk_repo() {
+  local zmk_repo="$WORKSPACE_DIR/zmk.git"
+  local current_ref=""
+
+  if [ ! -d "$zmk_repo/.git" ]; then
+    return
+  fi
+
+  current_ref="$(workspace_zmk_revision)"
+
+  if [ "$UPDATE" -ne 1 ] && [ "$current_ref" = "$ZMK_REVISION" ]; then
+    return
+  fi
+
+  git -C "$zmk_repo" fetch --tags origin "$ZMK_REVISION"
+
+  if git -C "$zmk_repo" rev-parse -q --verify "refs/remotes/origin/$ZMK_REVISION" >/dev/null; then
+    git -C "$zmk_repo" checkout --detach "refs/remotes/origin/$ZMK_REVISION"
+    printf '%s\n' "$ZMK_REVISION" > "$WORKSPACE_DIR/.zmk-revision"
+    return
+  fi
+
+  git -C "$zmk_repo" checkout --detach FETCH_HEAD
+  printf '%s\n' "$ZMK_REVISION" > "$WORKSPACE_DIR/.zmk-revision"
+}
+
 resolve_app_dir() {
   local west_config="$WORKSPACE_DIR/.west/config"
   local manifest_path=""
@@ -128,6 +177,9 @@ resolve_app_dir() {
 }
 
 bootstrap_workspace() {
+  local current_ref=""
+  local refresh_workspace=0
+
   if [ ! -d "$WORKSPACE_DIR/.west" ]; then
     mkdir -p "$(dirname "$WORKSPACE_DIR")"
     "$WEST_BIN" init \
@@ -140,10 +192,17 @@ bootstrap_workspace() {
       "$WEST_BIN" update
       "$WEST_BIN" zephyr-export
     )
+    printf '%s\n' "$ZMK_REVISION" > "$WORKSPACE_DIR/.zmk-revision"
     return
   fi
 
-  if [ "$UPDATE" -eq 1 ]; then
+  current_ref="$(workspace_zmk_revision)"
+  if [ "$UPDATE" -eq 1 ] || [ "$current_ref" != "$ZMK_REVISION" ]; then
+    refresh_workspace=1
+  fi
+
+  if [ "$refresh_workspace" -eq 1 ]; then
+    sync_zmk_repo
     (
       cd "$WORKSPACE_DIR"
       "$WEST_BIN" update
@@ -154,7 +213,7 @@ bootstrap_workspace() {
 
 build_target() {
   local side="$1"
-  local board="eyelash_sofle_${side}"
+  local board="eyelash_sofle_${side}/nrf52840/zmk"
   local build_path="$BUILD_DIR/$side"
   local pristine_args=()
 

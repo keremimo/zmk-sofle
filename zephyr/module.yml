@@ -1,3 +1,5 @@
+name: zmk-keyboard-eyelash-sofle
+
 build:
   settings:
      board_root: .
