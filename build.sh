@@ -8,19 +8,22 @@ PYTHON_VENV_DIR="${ZMK_PYTHON_VENV_DIR:-$ROOT_DIR/tools/python-venv}"
 CONFIG_DIR="$ROOT_DIR/config"
 MODULE_DIR="$ROOT_DIR"
 BUILD_DIR="$ROOT_DIR/build"
+ARTIFACTS_DIR="$ROOT_DIR/artifacts"
 ZMK_REVISION="${ZMK_REVISION:-main}"
 ZMK_MANIFEST_FILE="${ZMK_MANIFEST_FILE:-app/west.yml}"
 ZMK_APP_DIR="${ZMK_APP_DIR:-}"
 SHIELD="${ZMK_SHIELD:-nice_view}"
+BUILD_VARIANT=""
 
 TARGET="all"
 PRISTINE=0
 UPDATE=0
+SETTINGS_RESET=0
 WEST_BIN=""
 
 usage() {
   cat <<EOF
-Usage: $(basename "$0") [all|left|right] [--pristine] [--update]
+Usage: $(basename "$0") [all|left|right] [--pristine] [--update] [--settings-reset]
 
 Builds Eyelash Sofle firmware locally using a private ZMK workspace.
 
@@ -30,6 +33,7 @@ Options:
   right       Build only the right half
   --pristine  Run a pristine build
   --update    Run 'west update' before building
+  --settings-reset  Build special firmware that clears persisted settings
   -h, --help  Show this help
 
 Environment:
@@ -214,10 +218,13 @@ bootstrap_workspace() {
 build_target() {
   local side="$1"
   local board="eyelash_sofle_${side}/nrf52840/zmk"
-  local build_path="$BUILD_DIR/$side"
+  local build_path="$BUILD_DIR/$side${BUILD_VARIANT:+-$BUILD_VARIANT}"
+  local uf2_path="$build_path/zephyr/zmk.uf2"
+  local artifact_name="eyelash_sofle_${side}${BUILD_VARIANT:+-$BUILD_VARIANT}.uf2"
   local pristine_args=()
 
   mkdir -p "$BUILD_DIR"
+  mkdir -p "$ARTIFACTS_DIR"
 
   if [ "$PRISTINE" -eq 1 ]; then
     pristine_args+=(--pristine)
@@ -236,7 +243,10 @@ build_target() {
       -DSHIELD="$SHIELD"
   )
 
-  echo "Built $side firmware at: $build_path/zephyr/zmk.uf2"
+  cp "$uf2_path" "$ARTIFACTS_DIR/$artifact_name"
+
+  echo "Built $side firmware at: $uf2_path"
+  echo "Copied artifact to: $ARTIFACTS_DIR/$artifact_name"
 }
 
 while [ "$#" -gt 0 ]; do
@@ -249,6 +259,11 @@ while [ "$#" -gt 0 ]; do
       ;;
     --update)
       UPDATE=1
+      ;;
+    --settings-reset)
+      SETTINGS_RESET=1
+      SHIELD="settings_reset"
+      BUILD_VARIANT="settings-reset"
       ;;
     -h|--help)
       usage

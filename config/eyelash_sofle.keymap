@@ -72,7 +72,7 @@
             #binding-cells = <2>;
             // Timeless home-row mods: fast taps, intentional cross-hand holds.
             flavor = "balanced";
-            require-prior-idle-ms = <125>;
+            require-prior-idle-ms = <100>;
             tapping-term-ms = <280>;
             bindings = <&kp>, <&kp>;
 
@@ -86,7 +86,7 @@
             #binding-cells = <2>;
             // Timeless home-row mods: fast taps, intentional cross-hand holds.
             flavor = "balanced";
-            require-prior-idle-ms = <125>;
+            require-prior-idle-ms = <100>;
             tapping-term-ms = <280>;
             bindings = <&kp>, <&kp>;
 
@@ -120,6 +120,7 @@
             #binding-cells = <0>;
             bindings = <&none &kp LT &kp PRCNT &kp SPACE &kp E &kp N &kp D &kp SPACE &kp PRCNT &kp GT>;
         };
+
     };
 
     keymap {
@@ -179,7 +180,7 @@
 &trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans  &rgb_ug RGB_TOG  &rgb_ug RGB_EFR  &rgb_ug RGB_EFF  &rgb_ug RGB_SPD  &rgb_ug RGB_SPI  &trans
 &trans  &trans        &trans        &trans        &trans        &sys_reset      &trans  &bootloader      &rgb_ug RGB_SAD  &rgb_ug RGB_SAI  &rgb_ug RGB_HUD  &rgb_ug RGB_HUI  &trans
 &trans  &trans        &trans        &trans        &trans        &out OUT_TOG    &trans  &trans           &trans           &trans           &rgb_ug RGB_BRD  &rgb_ug RGB_BRI  &trans
-&trans  &trans        &trans        &trans        &trans        &trans          &trans  &trans           &trans           &trans           &trans           &trans           &trans
+&trans  &trans        &trans        &bt BT_CLR    &trans        &trans          &trans  &trans           &trans           &trans           &trans           &trans           &trans
 &trans  &trans        &trans        &trans        &trans        &trans          &trans  &trans           &trans           &trans           &trans           &trans
             >;
 
